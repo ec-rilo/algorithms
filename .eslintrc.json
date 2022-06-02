@@ -2,6 +2,10 @@
   "extends": "airbnb",
   "plugins": ["jest"],
   "env": {
-    "jest/globals": true
+    "jest/globals": true,
+    "es6": true
+  },
+  "rules": {
+    "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"]
   }
 }
