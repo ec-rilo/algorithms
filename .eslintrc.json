@@ -6,6 +6,7 @@
     "es6": true
   },
   "rules": {
-    "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"]
+    "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
+    "no-plusplus": [2, { "allowForLoopAfterthoughts": true }]
   }
 }
