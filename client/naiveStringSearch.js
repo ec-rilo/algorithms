@@ -1,27 +1,14 @@
-function naiveSearch(longStr, val) {
-  let counter = 0;
+function naiveSearch(long, pattern) {
+  let count = 0;
 
-  for (let i = 0; i < longStr.length; i++) {
-    if (longStr[i] === val[0]) {
-      let numOfMatches = 0;
-
-      for (let j = 0; j < val.length; j++) {
-        const currChar = val[j];
-        const outerChar = longStr[i + j];
-
-        if (currChar !== outerChar) {
-          break;
-        } else {
-          numOfMatches++;
-        }
-      }
-
-      if (numOfMatches === val.length) counter++;
-      i += numOfMatches - 1;
+  for (let i = 0; i < long.length; i++) {
+    for (let j = 0; j < pattern.length; j++) {
+      if (long[j + i] !== pattern[j]) break;
+      if (j === pattern.length - 1) count++;
     }
   }
 
-  return counter;
+  return count;
 }
 
 export default naiveSearch;
@@ -30,27 +17,16 @@ export default naiveSearch;
 
 /*
 
-declare a var called counter init with 0
+declare a var called count init with 0
 
-iterate through longStr over each individual character
-  if currChar in outer Loop is equal to first char in `value`
+iterate over long
+  iterate over pattern
+    if outerChar does NOT equal innerChar
+      break
+    if inner index equals pattern length - 1
+      increment count
 
-    declare a var called numOfMatches init with 0
-
-    iterate through `value`
-      declare a var called currChar init with char from `value` loop
-      declare a var called outerChar init with outer loops index + inner loops index
-      if currChar does NOT equal outerChar
-        break out of loop
-      otherwise
-        increase numOfMatches by 1
-
-    if numOfMatches equals the length of `value` str
-      increase counter by 1
-
-    increase outer loop index counter by num of matches - 1
-
-return counter
+return count
 */
 
 /* ---------- IOCE ---------- */
