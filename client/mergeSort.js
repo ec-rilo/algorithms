@@ -17,14 +17,14 @@ function merge(arr1, arr2) {
     }
   }
 
-  if (!arr1[arr1Pointer]) {
-    for (let i = arr2Pointer; i < arr2.length; i++) {
-      results.push(arr2[i]);
-    }
-  } else if (!arr2[arr2Pointer]) {
-    for (let i = arr1Pointer; i < arr1.length; i++) {
-      results.push(arr1[i]);
-    }
+  while (arr1Pointer < arr1.length) {
+    results.push(arr1[arr1Pointer]);
+    arr1Pointer += 1;
+  }
+
+  while (arr2Pointer < arr2.length) {
+    results.push(arr2[arr2Pointer]);
+    arr2Pointer += 1;
   }
 
   return results;
