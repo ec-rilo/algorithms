@@ -1,25 +1,35 @@
 import merge from './merge';
 
+// function mergeSort(arr) {
+//   const traverseList = (list) => {
+//     if (list.length === 1 || list.length === 0) {
+//       return list;
+//     }
+
+//     const leftHalf = list.slice(0, Math.floor(list.length / 2));
+//     const rightHalf = list.slice(Math.floor(list.length / 2));
+
+//     const sortedLeftHalf = traverseList(leftHalf);
+//     const sortedRightHalf = traverseList(rightHalf);
+
+//     const sortedArr = merge(sortedLeftHalf, sortedRightHalf);
+
+//     return sortedArr;
+//   };
+
+//   traverseList(arr);
+
+//   return arr;
+// }
+
 function mergeSort(arr) {
-  const traverseList = (list) => {
-    if (list.length === 1 || list.length === 0) {
-      return list;
-    }
+  if (arr.length <= 1) return arr;
 
-    const leftHalf = list.slice(0, Math.floor(list.length / 2));
-    const rightHalf = list.slice(Math.floor(list.length / 2));
+  const mid = Math.floor(arr.length / 2);
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
 
-    const sortedLeftHalf = traverseList(leftHalf);
-    const sortedRightHalf = traverseList(rightHalf);
-
-    const sortedArr = merge(sortedLeftHalf, sortedRightHalf);
-
-    return sortedArr;
-  };
-
-  traverseList(arr);
-
-  return arr;
+  return merge(left, right);
 }
 
 export default mergeSort;
