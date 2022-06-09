@@ -1,8 +1,8 @@
-function pivotHelper(arr, startIdx, endIdx) {
+function pivotHelper(arr, startIdx = 0, endIdx = arr.length - 1) {
   const pivot = arr[startIdx];
   let swapIdx = startIdx;
 
-  for (let i = 0; i < endIdx; i++) {
+  for (let i = startIdx + 1; i <= endIdx; i++) {
     const currElem = arr[i];
 
     if (currElem < pivot) {
@@ -19,8 +19,6 @@ function pivotHelper(arr, startIdx, endIdx) {
 
   return swapIdx;
 }
-
-export default pivotHelper;
 
 /* ---------- PSEUDO ---------- */
 
@@ -52,6 +50,49 @@ in:
   - `endIndex` - where we want the loop to stop iterating
 out:
   - `arr` - (array) - the input array but sorted in a unique way.
+cons:
+  - none
+edge:
+  - none
+*/
+
+function quickSort(arr, startIdx = 0, endIdx = arr.length) {
+  if (startIdx >= endIdx) return arr;
+
+  const pivotIdx = pivotHelper(arr, startIdx, endIdx);
+
+  quickSort(arr, startIdx, pivotIdx - 1);
+  quickSort(arr, pivotIdx + 1, endIdx);
+
+  return arr;
+}
+
+export default quickSort;
+/* ---------- PSEUDO ---------- */
+
+/*
+  if there is less then 2 elems in arr
+    return arr
+
+  have pivotIdx have pivotHelper invoked with args from startIdx to endIdx
+
+  have leftIdx have invoke quickSort with args
+  arr, startIdx, pivotIdx
+
+  have rightIdx have invoke quickSort with args
+  arr, pivotIdx + 1, endIdx
+
+  return arr
+
+*/
+
+/* ---------- IOCE ---------- */
+
+/*
+in:
+  - `arr` - (array) - array of unsorted integers
+out:
+  - `arr` - (array) - an array of sorted integers
 cons:
   - none
 edge:
