@@ -44,3 +44,58 @@ describe('Insert method', () => {
   })
 });
 
+describe('find method', () => {
+  it('should return false if there is no root.', () => {
+    expect(BST.find(3)).toBe(false);
+  });
+
+  it('should return true if it\'s within the BST.', () => {
+    BST.insert(10);
+    BST.insert(6);
+    BST.insert(12);
+    BST.insert(3);
+    BST.insert(8);
+    BST.insert(12);
+    BST.insert(11);
+    BST.insert(15);
+    BST.insert(13);
+    BST.insert(16);
+
+    const tempNode = new Node(15);
+    const left = new Node(13);
+    const right = new Node(16);
+    tempNode.left = left;
+    tempNode.right = right;
+    expect(BST.find(15)).toMatchObject(tempNode);
+  });
+
+  it('should return false if it\'s not within the BST.', () => {
+    BST.insert(10);
+    BST.insert(6);
+    BST.insert(12);
+    BST.insert(3);
+    BST.insert(8);
+    BST.insert(12);
+    BST.insert(11);
+    BST.insert(15);
+    BST.insert(13);
+    BST.insert(16);
+    expect(BST.find(14)).toBe(false);
+  });
+});
+
+describe('Breadth first search method', () => {
+  it('should return an emtpy array if there is no root',() =>  {
+    expect(BST.BFS()).toEqual([]);
+  });
+
+  it('should return an array of values in breadth first order', () => {
+    BST.insert(10);
+    BST.insert(6);
+    BST.insert(15);
+    BST.insert(3);
+    BST.insert(8);
+    BST.insert(20);
+    expect(BST.BFS()).toEqual([10, 6, 15, 3, 8, 20]);
+  });
+});
